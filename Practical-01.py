@@ -1,48 +1,41 @@
-import math
+# Practical 1: Demonstrating usage of NumPy, SciPy, Math, and Statistics
+
 import numpy as np
-from scipy import linalg
+import scipy.special as sp
+from math import sqrt, sin, ceil, floor, exp, pi
+import statistics
 
-# Math Library
-print("Math Library Operations:")
-print("Floor of 3.7:", math.floor(3.7))
-print("Ceil of 3.2:", math.ceil(3.2))
-print("Square root of 16:", math.sqrt(16))
-print("Sine of pi/2:", math.sin(math.pi / 2))
-print()
+# Sample numerical data
+data = [10, 20, 30, 40, 50]
 
-# Numpy Array Attributes
-array = np.array([[1, 2], [3, 4]])
-print("Array:\n", array)
-print("Dimensions:", array.ndim)
-print("Shape:", array.shape)
-print("Size:", array.size)
-print("Sum:", np.sum(array))
-print("Mean:", np.mean(array))
-print("Sorted (flattened):", np.sort(array, axis=None))
-print()
+print("Original Data:", data)
 
-# Reshaping arrays
-flat_list = [1, 2, 3, 4, 5, 6]
-array_1d = np.array(flat_list)
-array_2d = array_1d.reshape((2, 3))
-array_3d = array_1d.reshape((1, 2, 3))
-print("1D Array:", array_1d)
-print("2D Array:\n", array_2d)
-print("3D Array:\n", array_3d)
-print()
+# NumPy Operations
+np_array = np.array(data)
+print("\n--- NumPy ---")
+print("Array:", np_array)
+print("Mean (NumPy):", np.mean(np_array))
+print("Standard Deviation (NumPy):", np.std(np_array))
+print("Sum (NumPy):", np.sum(np_array))
+print("Square Root (element-wise):", np.sqrt(np_array))
 
-# Generating arrays and performing matrix operations
-matrix_a = np.array([[1, 2], [3, 4]])
-matrix_b = np.array([[2, 0], [1, 3]])
-print("Matrix A:\n", matrix_a)
-print("Matrix B:\n", matrix_b)
-print("Matrix Addition:\n", matrix_a + matrix_b)
-print("Matrix Multiplication:\n", np.dot(matrix_a, matrix_b))
-print()
+# Math Library Operations
+print("\n--- Math ---")
+print("Square root of 16:", sqrt(16))
+print("Exponential of 2:", exp(2))
+print("Sine of π/2:", sin(pi/2))
+print("Floor of 4.7:", floor(4.7))
+print("Ceil of 4.3:", ceil(4.3))
 
-# Scipy - Determinant and Eigenvalues
-det = linalg.det(matrix_a)
-eigenvalues, eigenvectors = linalg.eig(matrix_a)
-print("Determinant of Matrix A:", det)
-print("Eigenvalues of Matrix A:", eigenvalues)
-print("Eigenvectors of Matrix A:\n", eigenvectors)
+# Statistics Module
+print("\n--- Statistics ---")
+print("Mean (Statistics):", statistics.mean(data))
+print("Median:", statistics.median(data))
+print("Variance:", statistics.variance(data))
+print("Standard Deviation:", statistics.stdev(data))
+
+# SciPy Special Functions
+print("\n--- SciPy ---")
+print("Gamma(5):", sp.gamma(5))
+print("Factorial(5):", sp.factorial(5))
+print("Log Gamma(5):", sp.gammaln(5))
