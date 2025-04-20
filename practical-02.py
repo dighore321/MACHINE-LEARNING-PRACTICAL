@@ -1,19 +1,30 @@
+# Practical 2: Basic Statistics and Data Preprocessing using pandas and sklearn
+
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from scipy import stats
 
-data = {'A': [1, 2, np.nan, 4],
-        'B': [5, np.nan, 7, 8],
-        'C': [9, 10, 11, 12]}
+# Sample dataset
+data = {'Marks': [50, 60, 70, 80, 90, 100]}
 df = pd.DataFrame(data)
 
 print("Original Data:\n", df)
 
-# Handle missing values
-df_filled = df.fillna(df.mean())
-print("After filling missing values:\n", df_filled)
+# --- Basic Statistics ---
+print("\n--- Basic Statistics ---")
+print("Mean:", df['Marks'].mean())
+print("Median:", df['Marks'].median())
+print("Mode:", df['Marks'].mode()[0])
+print("Variance:", df['Marks'].var())
+print("Standard Deviation:", df['Marks'].std())
 
-# Min-Max Normalization
+# --- Data Normalization (Min-Max Scaling) ---
 scaler = MinMaxScaler()
-scaled = scaler.fit_transform(df_filled)
-print("Normalized Data:\n", pd.DataFrame(scaled, columns=df.columns))
+df['MinMax_Scaled'] = scaler.fit_transform(df[['Marks']])
+print("\nMin-Max Normalized Data:\n", df[['Marks', 'MinMax_Scaled']])
+
+# --- Z-score Standardization ---
+z_scores = stats.zscore(df['Marks'])
+df['Z_Score'] = z_scores
+print("\nZ-Score Standardized Data:\n", df[['Marks', 'Z_Score']])
